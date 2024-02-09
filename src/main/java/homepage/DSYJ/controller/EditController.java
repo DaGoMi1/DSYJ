@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 public class EditController {
 
     private final MemberService memberService;
-
+    
     @Autowired
     public EditController(MemberService memberService) {
         this.memberService = memberService;
