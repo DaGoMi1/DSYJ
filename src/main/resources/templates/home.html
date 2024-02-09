@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/home.css" />
+    <script src="https://kit.fontawesome.com/f668b9b848.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<div class="carousel">
+    <div class="carousel-container">
+        <div class="inner">
+            <img th:src="@{image/yes.png}" alt="">
+        </div>
+    </div>
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+</div>
+
+<main class="main">
+    <div class="wrap">
+        <div class="frame">
+            <div class="double">
+                <div class="contents1">학과소개</div>
+                <div class="contents1">진행중인 투표</div>
+            </div>
+            <div class="double">
+                <div class="contents2">공지사항</div>
+                <div class="contents2">자유게시판</div>
+                <div class="contents2">시간표</div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer_title">
+        <h2>한국해양대학교 데이터사이언스</h2>
+    </div>
+
+    <div class="footer_frame">
+        <div class="footer_main">
+            <div class="rows">
+                <h3>Developers</h3>
+                <div>
+                    <h4>Front-end</h4>
+                    <p>sanginjeong | zhyeonn</p>
+                    <h4>Back-end</h4>
+                    <p>dagomi | yarime</p>
+                </div>
+            </div>
+
+            <div class="rows">
+                <h3>KMOU</h3>
+                <ul>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU 홈페이지</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU_LMS</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">종합정보시스템</a></li>
+                    <li><a href="https://cts.kmou.ac.kr/" target="_blank">Ocean-CTS</a></li>
+                </ul>
+            </div>
+
+            <div class="rows">
+                <h3>Data Science</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/kmou_datascience/" target="_blank">인스타그램</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">학과 홈페이지</a></li>
+                    <li><a href="https://youtu.be/RJZF3WwqfYQ?si=0PO7fgNtqQMnlIuh" target="_blank">학과 소개 영상</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h4>오시는 길 : (49112) 부산광역시 영도구 태종로 727(동삼동) 한국해양대학교</h4>
+            <h4>학과 사무실 : 공대1관 127호 | ☎️ 051-410-4370</h4>
+            <h4>문의 : sanginjeong07@gmail.com</h4>
+        </div>
+    </div>
+</footer>
+
+<script src="/JS/home.js"></script>
+</body>
+</html>

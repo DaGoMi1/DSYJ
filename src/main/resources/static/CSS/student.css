@@ -1,0 +1,319 @@
+body {
+    margin: 0;
+}
+button {
+    background: none;
+    border: none;
+    color: white;
+}
+.overlay.active {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+    ); /* 여기서 rgba의 마지막 값은 투명도를 나타냄 */
+    display: block;
+}
+.overlay.strongActive {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(
+            0,
+            0,
+            0,
+            0.5
+    ); /* 여기서 rgba의 마지막 값은 투명도를 나타냄 */
+    display: block;
+    z-index: 200;
+}
+.login {
+    display: flex;
+    flex-direction: row;
+    justify-content: right;
+}
+.login a {
+    text-decoration: none;
+    padding: 12px 24px;
+    color: black;
+}
+.login a:hover {
+    background-color: rgb(44, 48, 145);
+    color: white;
+}
+#modal {
+    display: none;
+    z-index: 100;
+    background-color: rgba(0, 0, 0, 0.3);
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+#modal > #content {
+    width: 400px;
+    margin: 100px auto;
+    padding: 20px;
+    position: relative;
+    background-color: #fff;
+    border-radius: 4px;
+}
+#modal > #content h3 {
+    text-align: center;
+}
+
+#modal .close {
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    font-size: 13px;
+    border: 2px solid rgb(44, 48, 145);
+    background-color: rgb(44, 48, 145);
+    color: white;
+    padding: 5px 8px;
+    border-radius: 100%;
+    margin: 8px 10px;
+}
+
+#modal .close:hover,
+#modal .close:focus {
+    text-decoration: none;
+    cursor: pointer;
+}
+.btn {
+    background-color: white;
+    border: none;
+    font-size: 16px;
+    padding: 12px 24px;
+}
+.btn:hover {
+    background-color: rgb(44, 48, 145);
+    color: white;
+}
+.close {
+    background-color: rgb(44, 48, 145);
+}
+.type {
+    display: flex;
+    justify-content: center;
+    padding: 6px 10px;
+}
+.type a {
+    padding: 0px 8px;
+}
+a {
+    text-decoration: none;
+    color: black;
+}
+label {
+    display: inline-block;
+    text-align: center;
+    width: 80px;
+}
+#btnCheck {
+    width: 70px;
+    height: 40px;
+    font-size: 15px;
+    border: 3px solid rgb(44, 48, 145);
+    background-color: white;
+    border-radius: 8px;
+    margin: 10px;
+}
+#btnCheck:hover {
+    background-color: rgb(44, 48, 145);
+    cursor: pointer;
+    color: white;
+}
+body {
+    margin: 0;
+}
+.navbar {
+    display: grid;
+    grid-template-columns: 3fr 9fr;
+    text-align: center;
+    align-items: center;
+    color: white;
+    background-color: rgb(44, 48, 145);
+    padding: 8px 12px;
+    position: sticky;
+    top: 0;
+    z-index: 99;
+}
+.logo a {
+    text-decoration: none;
+    color: white;
+}
+.menu {
+    display: flex;
+    justify-content: space-around;
+    list-style: none;
+    padding-left: 0;
+}
+.menu a {
+    text-decoration: none;
+    color: white;
+}
+.menu li:hover > a {
+    color: rgb(44, 48, 145);
+    background-color: white;
+    border-radius: 4px;
+}
+
+.dropbtn {
+    padding: 8px 38px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+.hiddenmenu {
+    width: 100%;
+    display: none;
+    flex-direction: column;
+    top: 30px;
+    position: absolute;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: rgb(44, 48, 145);
+    border-radius: 4px;
+}
+.hiddenmenu > li {
+    z-index: 99;
+    padding: 12px 18px;
+    display: inline-block;
+    font-size: 14px;
+}
+.hiddenmenu > li:hover {
+    background-color: white;
+}
+.dropdown {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+.hiddenmenu > li > a {
+    display: flex;
+    width: 100%;
+}
+
+.main {
+    text-align: center;
+}
+.wrap {
+    display: inline-block;
+    width: 1170px;
+}
+.wrap h1 {
+    text-align: center;
+    font-size: 40px;
+}
+.frame {
+    display: flex;
+    justify-content: space-around;
+    padding: 8px 12px;
+    margin-bottom: 40px;
+}
+.student {
+    display: flex;
+    border-radius: 8px;
+    background-color: rgb(223, 229, 234);
+    padding: 8px 12px;
+}
+.student_img {
+    display: flex;
+    padding: 8px 12px;
+    justify-content: center;
+}
+.student_img_element {
+    width: 100px;
+}
+.student_department {
+    padding: 8px 12px;
+    background-color: rgb(240, 242, 244);
+    border-radius: 40px;
+    font-weight: bold;
+    font-size: 20px;
+}
+.student_element {
+    align-items: flex-start;
+    width: 160px;
+}
+footer {
+    padding: 20px;
+    background-color: rgb(44, 48, 145);
+    color: white;
+}
+.footer_title {
+    text-align: center;
+}
+.footer_frame {
+    width: 800px;
+    margin: auto;
+}
+.footer_main {
+    display: flex;
+    justify-content: space-around;
+}
+
+.rows {
+    width: 180px;
+    background-color: rgb(219, 219, 230);
+    border-radius: 12px;
+    padding: 12px 24px;
+    color: rgb(44, 48, 145);
+    text-align: center;
+}
+
+.rows ul {
+    list-style: none;
+    padding: 0;
+}
+.rows li {
+    padding: 10px 0px;
+}
+.rows a {
+    text-decoration: none;
+    color: rgb(44, 48, 145);
+}
+@media screen and (max-width: 768px) {
+    .navbar {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .menu {
+        width: 100%;
+        display: none;
+        flex-direction: column;
+    }
+    .menu.active {
+        display: flex;
+    }
+    .dropdown {
+        width: 100%;
+        padding: 12px 0px;
+    }
+    .hiddenmenu {
+        width: 100%;
+        margin-top: 10px;
+        flex-direction: column;
+        border: 1px solid black;
+        position: static;
+        display: none;
+    }
+    #hamburger {
+        display: block;
+    }
+}

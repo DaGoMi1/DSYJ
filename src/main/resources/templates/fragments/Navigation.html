@@ -1,0 +1,34 @@
+<nav class="navbar" th:fragment="Navigation">
+    <div class="logo"><a href="/">DATA SCIENCE</a></div>
+    <ul class="menu">
+        <li class="dropdown">
+            <button class="dropbtn">학과소개</button>
+            <ul class="hiddenmenu">
+                <li><a href="/DI/major">학과소개</a></li>
+                <li><a href="/DI/student">학생회소개</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <button class="dropbtn">공지사항</button>
+            <ul class="hiddenmenu">
+                <li><a href="/notice/notice">공지사항</a></li>
+                <li><a href="/notice/vote">투표</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <button class="dropbtn">게시판</button>
+            <ul class="hiddenmenu">
+                <li><a href="/board/free">자유게시판</a></li>
+                <li><a href="/board/rental">대여게시판</a></li>
+            </ul>
+        </li>
+        <li class="dropdown">
+            <button class="dropbtn">기타</button>
+            <ul class="hiddenmenu">
+                <li><a href="/timeTable">시간표</a></li>
+            </ul>
+        </li>
+    </ul>
+    <button id="hamburger"><i class="fa-solid fa-bars"></i></button>
+</nav>
+

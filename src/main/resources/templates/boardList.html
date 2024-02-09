@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/home.css"/>
+    <script src="https://kit.fontawesome.com/f668b9b848.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<main class="main">
+    <div class="wrap">
+        <br/>
+        <h1 style="text-align: center; font-size: 40px">
+    <span th:switch="${boardType}">
+        <span th:case="'notice'">공지사항</span>
+        <span th:case="'free'">자유게시판</span>
+        <span th:case="'rental'">대여게시판</span>
+        <!-- 기본 값 처리 (optional) -->
+        <span th:case="*" th:utext="${boardType}"></span>
+    </span>
+        </h1>
+        <div class="table">
+            <table>
+                <thead>
+                <tr>
+                    <th>제목</th>
+                    <th>작성자</th>
+                    <th>작성 날짜</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="posting, iterStat : ${postings}" th:attr="data-href=@{'/board/board/' + ${posting.id}}"
+                    onclick="window.location.href = this.getAttribute('data-href');">
+                    <!-- 번호 칼럼 제거 -->
+                    <td th:text="${posting.title}"></td>
+                    <td th:text="${posting.author}"></td>
+                    <td th:text="${posting.created_at}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <button class="write">
+                <a th:href="@{${boardType == 'notice' ? '/notice/write' : '/board/write?boardType=' + boardType}}">글쓰기</a>
+            </button>
+        </div>
+    </div>
+</main>
+<script src="/JS/home.js"></script>
+</body>
+</html>

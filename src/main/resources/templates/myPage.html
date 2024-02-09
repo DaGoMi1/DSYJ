@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/major.css" />
+    <title>Document</title>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<div class="container">
+
+    <form action="/updateUserInformation" method="post">
+        <div class="form-group">
+            <label for="name">이름 수정</label>
+            <p th:text="${name}"></p>
+            <input type="text" id="name" name="name" placeholder="수정할 이름">
+
+            <br>
+
+            <label for="email">메일 수정</label>
+            <p th:text="${email}"></p>
+            <input type="text" id="email" name="email" placeholder="수정할 메일">
+
+            <br>
+
+            <label for="currentPassword">현재 비밀번호</label>
+            <input type="password" id="currentPassword" name="password" placeholder="현재 비밀번호">
+
+            <label for="newPassword">새로운 비밀번호</label>
+            <input type="password" id="newPassword" name="password2" placeholder="새로운 비밀번호">
+
+            <label for="newPassword2">새로운 비밀번호</label>
+            <input type="password" id="newPassword2" name="password3" placeholder="새로운 비밀번호 확인">
+        </div>
+        <input type="submit" value="등록">
+    </form>
+
+</div>
+<script src="/JS/home.js"></script>
+</body>
+</html>

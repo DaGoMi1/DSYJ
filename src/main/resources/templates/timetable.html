@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/home.css"/>
+    <link rel="stylesheet" href="/CSS/timetable.css">
+    <script src="https://kit.fontawesome.com/f668b9b848.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<main>
+    <div>
+        <h3>1학년 시간표</h3>
+        <div>
+            <button class="addSchedule"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <table id="timetable-1">
+            <thead>
+            <th>시간</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>2학년 시간표</h3>
+        <div>
+            <button class="addSchedule"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <table id="timetable-2">
+            <thead>
+            <th>시간</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>3학년 시간표</h3>
+        <div>
+            <button class="addSchedule"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <table id="timetable-3">
+            <thead>
+            <th>시간</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+    <div>
+        <h3>4학년 시간표</h3>
+        <div>
+            <button class="addSchedule"><i class="fa-solid fa-plus"></i></button>
+        </div>
+        <table id="timetable-4">
+            <thead>
+            <th>시간</th>
+            <th>월</th>
+            <th>화</th>
+            <th>수</th>
+            <th>목</th>
+            <th>금</th>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</main>
+<footer>
+    <div class="footer_title">
+        <h2>한국해양대학교 데이터사이언스</h2>
+    </div>
+
+    <div class="footer_frame">
+        <div class="footer_main">
+            <div class="rows">
+                <h3>Developers</h3>
+                <div>
+                    <h4>Front-end</h4>
+                    <p>sanginjeong | zhyeonn</p>
+                    <h4>Back-end</h4>
+                    <p>dagomi | yarime</p>
+                </div>
+            </div>
+
+            <div class="rows">
+                <h3>KMOU</h3>
+                <ul>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU 홈페이지</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU_LMS</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">종합정보시스템</a></li>
+                    <li><a href="https://cts.kmou.ac.kr/" target="_blank">Ocean-CTS</a></li>
+                </ul>
+            </div>
+
+            <div class="rows">
+                <h3>Data Science</h3>
+                <ul>
+                    <li><a href="https://www.instagram.com/kmou_datascience/" target="_blank">인스타그램</a></li>
+                    <li><a href="https://www.kmou.ac.kr/di/main.do" target="_blank">학과 홈페이지</a></li>
+                    <li><a href="https://youtu.be/RJZF3WwqfYQ?si=0PO7fgNtqQMnlIuh" target="_blank">학과 소개 영상</a></li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h4>오시는 길 : (49112) 부산광역시 영도구 태종로 727(동삼동) 한국해양대학교</h4>
+            <h4>학과 사무실 : 공대1관 127호 | ☎️ 051-410-4370</h4>
+            <h4>문의 : sanginjeong07@gmail.com</h4>
+        </div>
+    </div>
+</footer>
+
+<div class="addScheduleModal">
+    <h3>강의 정보 입력</h3>
+    <div>강의명</div>
+    <input type="text" id="lecture_name" name="lecturename"/>
+
+    <div>요일</div>
+    <input type="radio" name="radio" value="월"/>월
+    <input type="radio" name="radio" value="화"/>화
+    <input type="radio" name="radio" value="수"/>수
+    <input type="radio" name="radio" value="목"/>목
+    <input type="radio" name="radio" value="금"/>금
+
+    <div>시작 시간</div>
+    <select id="start_time" name="starttime">
+        <option>9</option>
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+    </select>
+
+    <div>종료 시간</div>
+    <select id="end_time" name="endtime">
+        <option>10</option>
+        <option>11</option>
+        <option>12</option>
+        <option>13</option>
+        <option>14</option>
+        <option>15</option>
+        <option>16</option>
+        <option>17</option>
+        <option>18</option>
+    </select>
+
+    <div>컬러 선택</div>
+    <input type="color" id="select_color" name="color"/>
+
+    <div class="buttonArea">
+        <button id="cancelAddSchedule">취소</button>
+        <button id="completeAddSchedule">완료</button>
+    </div>
+</div>
+<script src="/JS/home.js"></script>
+<script src="/JS/timetable.js"></script>
+</body>
+</html>

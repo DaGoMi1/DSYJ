@@ -1,0 +1,107 @@
+main{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    place-items: center;
+    margin: 100px;
+    column-gap: 1rem;
+}
+main > div{
+    text-align: center;
+}
+main > div > div{
+    display: flex;
+    justify-content: flex-end;
+}
+.addSchedule{
+    color: black;
+    background: none;
+    padding: 12px 18px;
+    font-size: 24px;
+}
+.addSchedule:hover{
+    background: rgb(44,48,145);
+    color: white;
+}
+table {
+    border-collapse: collapse;
+    width: 100%;
+    height: 100px;
+}
+th, td, tr {
+    border: 1px solid #ddd;
+    text-align: center;
+}
+td{
+    width: 100px;
+    color: white;
+    position: relative;
+}
+th {
+    padding: 12px 24px;
+    background-color: #f2f2f2;
+}
+
+.addScheduleModal{
+    background-color: white;
+    color: rgb(44,48,145);
+    border: 1px solid black;
+    border-radius: 12px;
+    display: none;
+    position: fixed;
+    top: 30%;
+    left: 40%;
+    z-index: 200;
+    width: 20rem;
+    padding: 12px 18px;
+}
+.addScheduleModal > h3{
+    text-align: center;
+}
+.addScheduleModal > div{
+    padding: 10px 0px;
+}
+#lecture_name{
+    font-size: 18px;
+    border-radius: 12px;
+    padding: 10px;
+}
+.buttonArea{
+    text-align: right;
+}
+#completeAddSchedule,#cancelAddSchedule{
+    padding: 6px 12px;
+    color: rgb(44,48,145);
+}
+#completeAddSchedule:hover,#cancelAddSchedule:hover{
+    color: white;
+    background-color: rgb(44,48,145);
+}
+
+.btns{
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+.btns button{
+    padding: 4px 8px;
+    font-size: 16px;
+}
+.btns button:hover{
+    background: rgb(44,48,145);
+}
+
+@media screen and (max-width:48rem) {
+    main{
+        display: flex;
+        flex-direction: column;
+    }
+    .addScheduleModal{
+        left: 10%;
+        top: 10%;
+        width: 70%;
+    }
+    th{
+        padding: 8px 20px;
+    }
+}

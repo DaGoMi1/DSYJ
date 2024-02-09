@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/CSS/home.css"/>
+    <title>공지 글쓰기</title>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<h1>
+    <span th:switch="${posting.boardType}">
+        <span th:case="'notice'">공지 글쓰기</span>
+        <span th:case="'free'">자유 글쓰기</span>
+        <span th:case="'rental'">대여 글쓰기</span>
+        <!-- 기본 값 처리 (optional) -->
+        <span th:case="*" th:utext="${posting.boardType} 글쓰기"></span>
+    </span>
+</h1>
+
+<form th:object="${posting}"
+      th:action="@{'/' + ${posting.boardType eq 'notice' ? 'notice' : 'board'}
+                + ${editable ? '/save_edit' : '/submit_post'}}" method="post" enctype="multipart/form-data">
+
+    <!-- Hidden fields -->
+    <input type="hidden" th:field="*{id}" />
+    <input type="hidden" th:field="*{boardType}" />
+
+    <!-- Title -->
+    <label for="title">제목:</label>
+    <input type="text" id="title" th:field="*{title}" required><br>
+
+    <!-- Author -->
+    <label for="author">글쓴이:</label>
+    <input type="text" id="author" th:field="*{author}" required><br>
+
+    <!-- Content -->
+    <label for="content">작성글:</label>
+    <textarea id="content" th:field="*{content}" rows="5" cols="40" required></textarea><br>
+
+    <!-- Image -->
+    <label for="image">사진 추가:</label>
+    <input type="file" id="image" name="image" placeholder="이미지 입력"><br>
+
+    <!-- Video -->
+    <label for="video">동영상 추가:</label>
+    <input type="file" id="video" name="video" placeholder="동영상 입력"><br>
+
+    <!-- File -->
+    <label for="file">파일 추가:</label>
+    <input type="file" id="file" name="file" placeholder="파일 입력"><br>
+
+    <!-- Link -->
+    <label for="link">링크 추가:</label>
+    <input type="url" id="link" th:field="*{link}"><br>
+
+    <input type="submit" class="write" value="등록">
+</form>
+
+<script src="/JS/home.js"></script>
+</body>
+</html>

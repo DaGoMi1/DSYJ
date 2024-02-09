@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/CSS/home.css" />
+    <script src="https://kit.fontawesome.com/f668b9b848.js" crossorigin="anonymous"></script>
+</head>
+<body th:with="loggedInUserId=${loggedInUserId}, loggedInUserName=${loggedInUserName}">
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<div th:if="${posting != null}">
+    <h2 th:text="${posting.title}"></h2>
+    <p>글 작성자: <span th:text="${posting.author}"></span></p>
+    <p>글 내용: <span th:text="${posting.content}"></span></p>
+    <!-- 이미지 렌더링 -->
+    <img th:if="${posting.imagePath != null}" th:src="@{${posting.imagePath}}" alt="이미지">
+
+    <!-- 비디오 렌더링 -->
+    <video th:if="${posting.videoPath != null}" controls>
+        <source th:src="@{${posting.videoPath}}" type="video/avi">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- 파일 다운로드 링크 -->
+    <a th:if="${posting.filePath != null}" th:href="@{${posting.filePath}}" download>파일 다운로드</a>
+
+    <!-- 링크 -->
+    <a th:if="${posting.link != null}" th:href="${posting.link}" target="_blank">링크 바로가기</a>
+
+    <p>작성일시: <span th:text="${posting.created_at}"></span></p>
+
+    <form th:if="${posting.getUserId() eq loggedInUserId}"
+          th:action="@{'/' + ${posting.boardType eq 'notice' ? 'notice' : 'board'} + '/edit'}" method="get">
+
+        <input type="hidden" name="postId" th:value="${posting.id}" />
+        <input type="submit" class="write" value="수정">
+    </form>
+
+    <form th:if="${posting.getUserId() eq loggedInUserId}"
+          th:action="@{'/' + ${posting.boardType eq 'notice' ? 'notice' : 'board'} + '/delete'}" method="post">
+
+        <input type="hidden" name="postId" th:value="${posting.id}" />
+        <input type="submit" class="write" value="삭제">
+    </form>
+
+    <input th:unless="${posting.getUserId() eq loggedInUserId}" type="submit" class="write" style="display: none;">
+
+</div>
+
+<div>
+    <h3>댓글</h3>
+    <ul th:each="comment : ${comments}">
+        <li>
+            <p th:text="${loggedInUserName} + ': ' + ${comment.comment}"></p>
+            <small th:text="${comment.createdDate}"></small>
+
+        </li>
+    </ul>
+
+    <!-- 기본 댓글 추가 폼 -->
+    <form th:action="@{'/board/addComment'}" method="post">
+        <input type="hidden" name="postId" th:value="${posting.id}" />
+        <input type="hidden" name="userId" th:value="${loggedInUserId}" />
+        <label>
+            <textarea name="comment" required></textarea>
+        </label>
+        <input type="submit" value="댓글 추가" />
+    </form>
+</div>
+
+<script src="/JS/home.js"></script>
+</body>
+</html>

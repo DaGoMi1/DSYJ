@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ko"  xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/student.css" />
+    <title>Document</title>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<main class="main">
+    <div class="wrap">
+        <br />
+        <h1>학생회 소개</h1>
+        <div class="frame">
+            <div class="student">
+                <div class="student_element">
+                    <div class="student_department">회장</div>
+                    <div class="student_img">
+                        <img src="/image/안시현.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>22 안시현</div>
+                </div>
+            </div>
+            <div class="student">
+                <div class="student_element">
+                    <div class="student_department">부회장</div>
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>20 강지훈</div>
+                </div>
+            </div>
+        </div>
+        <div class="frame">
+            <div class="student">
+                <div class="student_element">
+                    <div class="student_department">총무부</div>
+                    <br />
+                    총무부장
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>19 전재욱</div>
+                    <br />총무부원
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>22 이민경</div>
+                </div>
+            </div>
+            <div class="student">
+                <div class="student_element">
+                    <div class="student_department">기획부</div>
+                    <br />
+                    기획부장
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>20 심준용</div>
+                    <br />기획부원
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>23 김하은</div>
+                </div>
+            </div>
+            <div class="student">
+                <div class="student_element">
+                    <div class="student_department">홍보부</div>
+                    <br />
+                    홍보부장
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>19 정상인</div>
+                    <br />홍보부원
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>23 박지민</div>
+                    <br />홍보부원
+                    <div class="student_img">
+                        <img src="./img/회장.png" alt="" class="student_img_element" />
+                    </div>
+                    <div>23 신민서</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+<footer>
+    <div class="footer_title">
+        <h2>한국해양대학교 데이터사이언스</h2>
+    </div>
+    <br />
+    <div class="footer_frame">
+        <div class="footer_main">
+            <div class="rows">
+                <h3>Developers</h3>
+                <div>
+                    <h4>Front-end</h4>
+                    <p>sanginjeong | zhyeonn</p>
+                    <h4>Back-end</h4>
+                    <p>dagomi | yarime</p>
+                </div>
+            </div>
+
+            <div class="rows">
+                <h3>KMOU</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU 홈페이지</a>
+                    </li>
+                    <li>
+                        <a href="https://www.kmou.ac.kr/di/main.do" target="_blank">KMOU_LMS</a>
+                    </li>
+                    <li>
+                        <a href="https://www.kmou.ac.kr/di/main.do" target="_blank">종합정보시스템</a>
+                    </li>
+                    <li>
+                        <a href="https://cts.kmou.ac.kr/" target="_blank">Ocean-CTS</a>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="rows">
+                <h3>Data Science</h3>
+                <ul>
+                    <li>
+                        <a href="https://www.instagram.com/kmou_datascience/" target="_blank">인스타그램</a>
+                    </li>
+                    <li>
+                        <a href="https://www.kmou.ac.kr/di/main.do" target="_blank">학과 홈페이지</a>
+                    </li>
+                    <li>
+                        <a href="https://youtu.be/RJZF3WwqfYQ?si=0PO7fgNtqQMnlIuh" target="_blank">학과 소개 영상</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div>
+            <h4>
+                오시는 길 : (49112) 부산광역시 영도구 태종로 727(동삼동)
+                한국해양대학교
+            </h4>
+            <h4>학과 사무실 : 공대1관 127호 | ☎️ 051-410-4370</h4>
+            <h4>문의 : sanginjeong07@gmail.com</h4>
+        </div>
+    </div>
+</footer>
+
+<script src="/JS/home.js"></script>
+</body>
+</html>
