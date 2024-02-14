@@ -34,6 +34,9 @@ public class RegisterController {
         member.setUserId(form.getUserId());
         member.setPassword(form.getPassword());
 
+        memberService.sendCodeToEmail(form.getEmail());
+
+
         if (member.getPassword().equals(password2)) {
             memberService.join(member);
             return "redirect:/";
@@ -41,4 +44,5 @@ public class RegisterController {
             return "error";
         }
     }
+
 }
