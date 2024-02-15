@@ -1,5 +1,6 @@
 package homepage.DSYJ.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -10,6 +11,7 @@ import java.util.Properties;
 
 @Configuration
 public class EmailConfig {
+
     @Value("${spring.mail.host}")
     private String host;
 
@@ -31,13 +33,13 @@ public class EmailConfig {
     @Value("${spring.mail.properties.mail.smtp.starttls.required}")
     private boolean starttlsRequired;
 
-    @Value("${spring.mail.properties.mail.smtp.connection timeout}")
+    @Value("${spring.mail.properties.mail.smtp.connectiontimeout}")
     private int connectionTimeout;
 
     @Value("${spring.mail.properties.mail.smtp.timeout}")
     private int timeout;
 
-    @Value("${spring.mail.properties.mail.smtp.write timeout}")
+    @Value("${spring.mail.properties.mail.smtp.writetimeout}")
     private int writeTimeout;
 
     @Bean
