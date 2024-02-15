@@ -13,7 +13,6 @@ public class ScheduleService {
         this.scheduleRepository = scheduleRepository;
     }
 
-
     public void scheduleSave(Schedule schedule){
         scheduleRepository.save(schedule);
     }
