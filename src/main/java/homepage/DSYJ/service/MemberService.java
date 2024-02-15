@@ -24,14 +24,19 @@ import java.util.Random;
 @Slf4j
 public class MemberService implements UserDetailsService {
     private final SpringDataJpaMemberRepository memberRepository;
-    private MailService mailService;
+    private final MailService mailService;
+    private final AuthCodeService authCodeService;
 
     @Autowired @Lazy
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public MemberService(SpringDataJpaMemberRepository memberRepository,) {
+    public MemberService(SpringDataJpaMemberRepository memberRepository,
+                         MailService mailService,
+                         AuthCodeService authCodeService) {
         this.memberRepository = memberRepository;
+        this.mailService = mailService;
+        this.authCodeService = authCodeService;
     }
 
     public void join(Member member) {
@@ -44,7 +49,10 @@ public class MemberService implements UserDetailsService {
         }
 
         memberRepository.save(member);
+    }
 
+    public boolean isPasswordMatching(String password, String password2) {
+        return password.equals(password2);
     }
 
     private void validateDuplicateMember(Member member) {
@@ -88,12 +96,11 @@ public class MemberService implements UserDetailsService {
 
     public void sendCodeToEmail(String toEmail) {
         this.checkDuplicatedEmail(toEmail);
-        String title = "Travel with me 이메일 인증 번호";
+        String title = "Data Science 홈페이지 이메일 인증 번호";
         String authCode = this.createCode();
         mailService.sendEmail(toEmail, title, authCode);
-        // 이메일 인증 요청 시 인증 번호 Redis에 저장 ( key = "AuthCode " + Email / value = AuthCode )
-        mailService.setValues(AUTH_CODE_PREFIX + toEmail,
-                authCode, Duration.ofMillis(this.authCodeExpirationMillis));
+        // 이메일 인증 요청 시 인증 번호 authCode 저장 ( key = "AuthCode " + Email / value = AuthCode )
+        authCodeService.saveAuthCode(toEmail, authCode);
     }
 
     private void checkDuplicatedEmail(String email) {
@@ -105,11 +112,11 @@ public class MemberService implements UserDetailsService {
     }
 
     private String createCode() {
-        int numLenth = 6;
+        int length = 6;
         try {
             Random random = SecureRandom.getInstanceStrong();
             StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < numLenth; i++) {
+            for (int i = 0; i < length; i++) {
                 builder.append(random.nextInt(10));
             }
             return builder.toString();
@@ -119,12 +126,11 @@ public class MemberService implements UserDetailsService {
         }
     }
 
-    public EmailVerificationResult verifiedCode(String email, String authCode) {
+    public boolean verifiedCode(String email, String authCode) {
         this.checkDuplicatedEmail(email);
-        String redisAuthCode = redisService.getValues(AUTH_CODE_PREFIX + email);
-        boolean authResult = redisService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
+        String redisAuthCode = authCodeService.getAuthCode(email);
 
-        return EmailVerificationResult.of(authResult);
+        return authCodeService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
     }
 }
 

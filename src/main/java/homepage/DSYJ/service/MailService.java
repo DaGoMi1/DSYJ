@@ -28,14 +28,6 @@ public class MailService {
         }
     }
 
-    public void setValues(String toEmail, String authCode, Duration expirationDuration) {
-        String subject = "Your Authentication Code";
-        String messageText = "Your authentication code is: " + authCode +
-                ". This code will expire in " + expirationDuration.toMinutes() + " minutes.";
-
-        sendEmail(toEmail, subject, messageText);
-    }
-
     private SimpleMailMessage createEmailForm(String toEmail, String title, String text) {
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(toEmail);
@@ -43,5 +35,20 @@ public class MailService {
         message.setText(text);
 
         return message;
+    }
+
+    public void saveAuthCode(String email, String authCode) {
+        String key = "AuthCode " + email;
+        authCodeRepository.save(key, authCode);
+    }
+
+    public String getAuthCode(String email) {
+        String key = "AuthCode " + email;
+        return authCodeRepository.findById(key).orElse(null);
+    }
+
+    public boolean checkExistsValue(String authCode) {
+        // authCode가 null이 아니고 비어있지 않으면 Redis에 값이 존재한다고 판단
+        return authCode != null && !authCode.isEmpty();
     }
 }
