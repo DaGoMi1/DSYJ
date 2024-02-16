@@ -14,6 +14,7 @@
 
             <label for="email">이메일</label>
             <input type="text" id="email" name="email" placeholder="이메일을 입력하세요">
+            <button type="button" class="button-style" onclick="sendVerificationCode()">인증코드 전송</button>
 
             <label for="userId">아이디</label>
             <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요">
@@ -28,6 +29,35 @@
     </form>
 
 </div>
+
 <script src="/JS/home.js"></script>
+<script>
+    function sendVerificationCode() {
+        // 여기에서 입력값을 가져와서 서버로 전송
+        var email = document.getElementById('email').value;
+
+        // 이메일 유효성 검사를 위한 간단한 예제
+        function validateEmail(email) {
+            var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            return regex.test(email);
+        }
+
+        if (!validateEmail(email)) {
+            alert('유효한 이메일 주소를 입력하세요.');
+            return;
+        }
+
+        // 이메일을 폼에 설정하고 폼을 전송
+        document.getElementById('verificationEmail').value = email;
+        document.getElementById('verificationCodeForm').submit();
+    }
+</script>
+<style>
+    .button-style {
+        background-color: white; /* 배경색을 검정색으로 설정 */
+        color: black; /* 글자색을 흰색으로 설정 */
+        border: 1px solid black; /* 테두리를 검정색으로 설정 */
+    }
+</style>
 </body>
 </html>
