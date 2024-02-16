@@ -15,7 +15,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
-import java.time.Duration;
 import java.util.List;
 import java.util.Optional;
 import java.util.Random;
@@ -24,19 +23,13 @@ import java.util.Random;
 @Slf4j
 public class MemberService implements UserDetailsService {
     private final SpringDataJpaMemberRepository memberRepository;
-    private final MailService mailService;
-    private final AuthCodeService authCodeService;
 
     @Autowired @Lazy
     private BCryptPasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    public MemberService(SpringDataJpaMemberRepository memberRepository,
-                         MailService mailService,
-                         AuthCodeService authCodeService) {
+    public MemberService(SpringDataJpaMemberRepository memberRepository) {
         this.memberRepository = memberRepository;
-        this.mailService = mailService;
-        this.authCodeService = authCodeService;
     }
 
     public void join(Member member) {
@@ -94,43 +87,5 @@ public class MemberService implements UserDetailsService {
         memberRepository.save(existingMember);
     }
 
-    public void sendCodeToEmail(String toEmail) {
-        this.checkDuplicatedEmail(toEmail);
-        String title = "Data Science 홈페이지 이메일 인증 번호";
-        String authCode = this.createCode();
-        mailService.sendEmail(toEmail, title, authCode);
-        // 이메일 인증 요청 시 인증 번호 authCode 저장 ( key = "AuthCode " + Email / value = AuthCode )
-        authCodeService.saveAuthCode(toEmail, authCode);
-    }
-
-    private void checkDuplicatedEmail(String email) {
-        Optional<Member> member = memberRepository.findByEmail(email);
-        if (member.isPresent()) {
-            log.debug("MemberServiceImpl.checkDuplicatedEmail exception occur email: {}", email);
-            throw new IllegalArgumentException("Invalid argument");
-        }
-    }
-
-    private String createCode() {
-        int length = 6;
-        try {
-            Random random = SecureRandom.getInstanceStrong();
-            StringBuilder builder = new StringBuilder();
-            for (int i = 0; i < length; i++) {
-                builder.append(random.nextInt(10));
-            }
-            return builder.toString();
-        } catch (NoSuchAlgorithmException e) {
-            log.debug("MemberService.createCode() exception occur");
-            throw new IllegalArgumentException("Invalid argument");
-        }
-    }
-
-    public boolean verifiedCode(String email, String authCode) {
-        this.checkDuplicatedEmail(email);
-        String redisAuthCode = authCodeService.getAuthCode(email);
-
-        return authCodeService.checkExistsValue(redisAuthCode) && redisAuthCode.equals(authCode);
-    }
 }
 
