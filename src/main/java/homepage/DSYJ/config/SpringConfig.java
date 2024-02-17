@@ -15,21 +15,16 @@ public class SpringConfig {
     private final SpringDataJpaMemberRepository springDataJpaMemberRepository;
     private final SpringDataJpaScheduleRepository springDataJpaScheduleRepository;
     private final SpringDataJpaCommentRepository springDataJpaCommentRepository;
-    private final JavaMailSender javaMailSender;
-    private final StringRedisTemplate redisTemplate;
 
     @Autowired
     public SpringConfig(SpringDataJpaPostingRepository springDataJpaPostingRepository,
                         SpringDataJpaMemberRepository springDataJpaMemberRepository,
                         SpringDataJpaScheduleRepository springDataJpaScheduleRepository,
-                        SpringDataJpaCommentRepository springDataJpaCommentRepository,
-                        JavaMailSender javaMailSender, StringRedisTemplate redisTemplate) {
+                        SpringDataJpaCommentRepository springDataJpaCommentRepository) {
         this.springDataJpaPostingRepository = springDataJpaPostingRepository;
         this.springDataJpaMemberRepository = springDataJpaMemberRepository;
         this.springDataJpaScheduleRepository = springDataJpaScheduleRepository;
         this.springDataJpaCommentRepository = springDataJpaCommentRepository;
-        this.javaMailSender = javaMailSender;
-        this.redisTemplate = redisTemplate;
     }
 
     @Bean
@@ -52,13 +47,4 @@ public class SpringConfig {
         return new ScheduleService(springDataJpaScheduleRepository);
     }
 
-    @Bean
-    public MailService mailService() {
-        return new MailService(javaMailSender, springDataJpaMemberRepository, redisService());
-    }
-
-    @Bean
-    public RedisService redisService(){
-        return new RedisService(redisTemplate);
-    }
 }
