@@ -20,7 +20,6 @@ import java.util.Optional;
 import java.util.Random;
 
 @Transactional
-@Slf4j
 public class MemberService implements UserDetailsService {
     private final SpringDataJpaMemberRepository memberRepository;
 
