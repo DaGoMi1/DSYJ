@@ -1,5 +1,4 @@
 let verified = false;
-
 let emailVerificationData;
 
 function sendNumber() {
@@ -21,7 +20,6 @@ function sendNumber() {
                 $("#verificationForm").css("display", "block");
                 $("#verificationSuccessMessage").css("display", "none");
                 $("#verificationFailMessage").css("display", "none");
-                verified = false;
             }
         },
         error: function (error) {
@@ -51,8 +49,21 @@ function checkNumber() {
 
 // 등록 버튼 클릭 시 이벤트 처리
 $("#registerButton").on("click", function (e) {
-    if (!verified) {
-        e.preventDefault(); // 인증이 완료되지 않았으면 폼 제출을 막음
-        alert("이메일 인증을 완료해주세요.");
+    // 각 입력 폼의 값 가져오기
+    const nameValue = $("#name").val();
+    const emailValue = $("#email").val();
+    const userIdValue = $("#userId").val();
+    const passwordValue = $("#password").val();
+    const password2Value = $("#password2").val();
+
+    // 값이 하나라도 비어있으면 경고창 표시 후 폼 제출 방지
+    if (!nameValue || !emailValue || !userIdValue || !passwordValue || !password2Value) {
+        e.preventDefault();
+        alert("회원가입을 하기 위한 정보가 부족합니다.");
+        // 인증이 완료되지 않았으면 폼 제출을 막음
+        if (!verified) {
+            e.preventDefault();
+            alert("이메일 인증을 완료해주세요.");
+        }
     }
 });
