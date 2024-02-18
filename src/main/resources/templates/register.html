@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" xmlns:color="http://www.w3.org/1999/xhtml"
+      xmlns:border="http://www.w3.org/1999/xhtml">
 <link rel="stylesheet" href="/CSS/home.css"/>
 <body>
 <div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
@@ -12,26 +13,50 @@
             <label for="name">이름</label>
             <input type="text" id="name" name="name" placeholder="이름을 입력하세요">
 
+            <br>
+
             <label for="email">이메일</label>
             <input type="text" id="email" name="email" placeholder="이메일을 입력하세요">
+            <button type="button" class="write" onclick="sendNumber()"
+                    style="border: 1px solid black; color: black;">인증번호 요청
+            </button>
+            <div id="verificationSuccessMessage" style="display: none;">
+                <p>인증 완료</p>
+            </div>
+            <div id="verificationFailMessage" style="display: none;">
+                <p>다시 확인해주세요</p>
+            </div>
+            <div id="verificationForm" style="display: none;">
+                <label for="code">인증번호</label>
+                <input type="text" id="code" name="code" placeholder="인증번호를 입력하세요">
+                <button type="button" class="write" onclick="checkNumber()"
+                        style="border: 1px solid black; color: black;">인증번호 확인
+                </button>
+            </div>
+
+            <br>
 
             <label for="userId">아이디</label>
             <input type="text" id="userId" name="userId" placeholder="아이디를 입력하세요">
 
+            <br>
+
             <label for="password">비밀번호</label>
             <input type="password" id="password" name="password" placeholder="비밀번호를 입력하세요">
+
+            <br>
 
             <label for="password2">비밀번호 확인</label>
             <input type="password" id="password2" name="password2" placeholder="비밀번호를 다시 입력하세요">
         </div>
-        <input type="submit" class="write" value="등록">
-    </form>
-
-    <form id="verificationCodeForm" action="/send-verification-code" method="post">
-        <input type="hidden" id="verificationEmail" name="email" value="">
+        <button type="submit" id="registerButton" class="write"
+                style="border: 1px solid black; color: black;">등록
+        </button>
     </form>
 
 </div>
 <script src="/JS/home.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="/JS/email.js"></script>
 </body>
 </html>
