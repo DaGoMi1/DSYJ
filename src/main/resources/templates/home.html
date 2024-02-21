@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <title>Document</title>
-    <link rel="stylesheet" href="/CSS/home.css" />
+    <link rel="stylesheet" href="/CSS/home.css"/>
     <script src="https://kit.fontawesome.com/f668b9b848.js" crossorigin="anonymous"></script>
 </head>
 <body>
@@ -29,8 +29,26 @@
                 <div class="contents1">진행중인 투표</div>
             </div>
             <div class="double">
-                <div class="contents2">공지사항</div>
-                <div class="contents2">자유게시판</div>
+                <div class="contents2">공지사항
+                    <ul>
+                        <li th:each="notice : ${noticeList}">
+                            <a th:attr="data-href=@{'/board/board/' + ${notice.id}}"
+                               onclick="window.location.href = this.getAttribute('data-href');">
+                                <span th:text="${notice.title}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="contents2">자유게시판
+                    <ul>
+                        <li th:each="posting : ${freeBoardList}">
+                            <a th:attr="data-href=@{'/board/board/' + ${posting.id}}"
+                               onclick="window.location.href = this.getAttribute('data-href');">
+                                <span th:text="${posting.title}"></span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
                 <div class="contents2">시간표</div>
             </div>
         </div>
