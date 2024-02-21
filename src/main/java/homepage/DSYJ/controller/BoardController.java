@@ -35,7 +35,7 @@ public class BoardController {
         List<Posting> postings = postingService.findByBoardType(boardType);
         model.addAttribute("postings", postings);
         model.addAttribute("boardType", boardType);
-        return "boardList";  // "boardList"�� ����� �� ������ �̸����� �����մϴ�.
+        return "boardList";
     }
 
 
