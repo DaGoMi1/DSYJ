@@ -17,7 +17,7 @@ public class SecurityConfig {
                         .requestMatchers("/login", "/login_process",
                                 "/register", "/register-process", "/email/send",
                                 "/CSS/**", "/JS/**", "/image/**", "/error",
-                                "/DI/**","/"
+                                "/DI/**","/","/notice/notice","board/{boardType}"
                         ).permitAll()
                         .requestMatchers("/notice/write").hasRole("ADMIN")
                         .anyRequest().authenticated()
