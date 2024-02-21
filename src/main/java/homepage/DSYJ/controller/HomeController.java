@@ -20,7 +20,10 @@ public class HomeController {
     @GetMapping("/")
     public String home(Model model) {
         List<Posting> freeBoardList = postingService.findByBoardType("free"); // 자유게시판 목록을 가져온다
+        List<Posting> noticeList = postingService.findByBoardType("notice"); // 공지사항 목록을 가져온다
+
         model.addAttribute("freeBoardList", freeBoardList);
+        model.addAttribute("noticeList", noticeList);
         return "home";
     }
 }
