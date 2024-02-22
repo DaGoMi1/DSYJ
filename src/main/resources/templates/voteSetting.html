@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/CSS/home.css"/>
+    <title>투표 주제 및 기간 설정</title>
+</head>
+<body>
+<div id="member-load" th:insert="~{fragments/MemberInformation :: MemberInformation}"></div>
+<div id="nav-load" th:insert="~{fragments/Navigation :: Navigation}"></div>
+
+<main class="main">
+    <div class="wrap">
+        <h1 style="text-align: center; font-size: 40px">투표 주제 및 기간 설정</h1>
+        <form action="/notice/voteStart" method="post"> <!-- 폼의 action 경로는 실제 처리를 담당하는 컨트롤러 경로로 변경 -->
+            <div class="frame">
+                <label for="topic">투표 주제:</label>
+                <input type="text" id="topic" name="topic" required>
+
+                <label for="startDate">시작 날짜:</label>
+                <input type="date" id="startDate" name="startDate" required>
+
+                <label for="endDate">종료 날짜:</label>
+                <input type="date" id="endDate" name="endDate" required>
+
+                <div id="options">
+                    <!-- 선택지 입력 칸이 동적으로 추가될 영역 -->
+                </div>
+
+                <button type="button" onclick="addOption()"
+                        style="border: 1px solid black; color: black;">선택지 추가</button>
+
+                <button type="submit" class="button"
+                        style="border: 1px solid black; color: black;">투표 시작</button>
+            </div>
+        </form>
+    </div>
+</main>
+
+<script src="/JS/home.js"></script>
+<script>
+    function addOption() {
+        // 선택지 입력 칸을 동적으로 추가하는 함수
+        var optionsDiv = document.getElementById('options');
+
+        var newOptionInput = document.createElement('input');
+        newOptionInput.type = 'text';
+        newOptionInput.name = 'options';
+        newOptionInput.placeholder = '선택지';
+        optionsDiv.appendChild(newOptionInput);
+    }
+</script>
+</body>
+</html>
