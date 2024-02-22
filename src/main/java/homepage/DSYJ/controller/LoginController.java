@@ -10,13 +10,6 @@ import jakarta.servlet.http.HttpSession;
 @Controller
 public class LoginController {
 
-    private final MemberService memberService;
-
-    @Autowired
-    public LoginController(MemberService memberService) {
-        this.memberService = memberService;
-    }
-
     @GetMapping("/login")
     public String login() {
         return "login";
