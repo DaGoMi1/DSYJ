@@ -1,10 +1,13 @@
 package homepage.DSYJ.controller;
 
 import homepage.DSYJ.domain.Posting;
+import homepage.DSYJ.domain.Vote;
 import homepage.DSYJ.dto.CustomUserDetails;
 import homepage.DSYJ.service.PostingService;
+import homepage.DSYJ.service.VoteService;
 import io.micrometer.common.util.StringUtils;
 import org.springframework.beans.BeanUtils;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -22,9 +26,12 @@ import java.util.Optional;
 public class NoticeController {
 
     private final PostingService postingService;
+    private final VoteService voteService;
 
-    public NoticeController(PostingService postingService) {
+    public NoticeController(PostingService postingService,
+                            VoteService voteService) {
         this.postingService = postingService;
+        this.voteService = voteService;
     }
 
     @GetMapping("/notice")
@@ -143,4 +150,20 @@ public class NoticeController {
         return "redirect:/notice/notice";
     }
 
+    @GetMapping("/setting")
+    public String voteSetting(){
+        return "voteSetting";
+    }
+
+    @PostMapping("/voteStart")
+    public String voteStart(@RequestParam String topic,
+                            @RequestParam String startDate,
+                            @RequestParam String endDate){
+        LocalDateTime startDateTime = LocalDateTime.parse(startDate);
+        LocalDateTime endDateTime = LocalDateTime.parse(endDate);
+
+        // 투표 생성 및 저장
+        voteService.createVote(topic, startDateTime, endDateTime);
+        return "redirect:/notice/vote";
+    }
 }

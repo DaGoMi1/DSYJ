@@ -19,7 +19,8 @@ public class SecurityConfig {
                                 "/CSS/**", "/JS/**", "/image/**", "/error",
                                 "/DI/**","/","/notice/notice","board/{boardType}"
                         ).permitAll()
-                        .requestMatchers("/notice/write").hasRole("ADMIN")
+                        .requestMatchers("/notice/write", "/notice/setting",
+                                "/notice/voteStart").hasRole("ADMIN")
                         .anyRequest().authenticated()
                 );
 
