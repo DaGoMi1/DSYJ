@@ -13,6 +13,7 @@ public class SpringConfig {
     private final SpringDataJpaMemberRepository springDataJpaMemberRepository;
     private final SpringDataJpaScheduleRepository springDataJpaScheduleRepository;
     private final SpringDataJpaCommentRepository springDataJpaCommentRepository;
+    private final SpringDataJpaVoteRepository springDataJpaVoteRepository;
     private final JavaMailSender javaMailSender;
 
     @Autowired
@@ -20,11 +21,13 @@ public class SpringConfig {
                         SpringDataJpaMemberRepository springDataJpaMemberRepository,
                         SpringDataJpaScheduleRepository springDataJpaScheduleRepository,
                         SpringDataJpaCommentRepository springDataJpaCommentRepository,
+                        SpringDataJpaVoteRepository springDataJpaVoteRepository,
                         JavaMailSender javaMailSender) {
         this.springDataJpaPostingRepository = springDataJpaPostingRepository;
         this.springDataJpaMemberRepository = springDataJpaMemberRepository;
         this.springDataJpaScheduleRepository = springDataJpaScheduleRepository;
         this.springDataJpaCommentRepository = springDataJpaCommentRepository;
+        this.springDataJpaVoteRepository = springDataJpaVoteRepository;
         this.javaMailSender = javaMailSender;
     }
 
@@ -46,6 +49,11 @@ public class SpringConfig {
     @Bean
     public ScheduleService scheduleService() {
         return new ScheduleService(springDataJpaScheduleRepository);
+    }
+
+    @Bean
+    public VoteService voteService(){
+        return new VoteService(springDataJpaVoteRepository);
     }
 
     @Bean
