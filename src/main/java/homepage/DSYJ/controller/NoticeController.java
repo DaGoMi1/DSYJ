@@ -158,12 +158,16 @@ public class NoticeController {
     @PostMapping("/voteStart")
     public String voteStart(@RequestParam String topic,
                             @RequestParam String startDate,
-                            @RequestParam String endDate){
-        LocalDateTime startDateTime = LocalDateTime.parse(startDate);
-        LocalDateTime endDateTime = LocalDateTime.parse(endDate);
+                            @RequestParam String endDate,
+                            @RequestParam List<String> options){
+        LocalDate startDateObj = LocalDate.parse(startDate);
+        LocalDateTime startDateTime = startDateObj.atStartOfDay();
+
+        LocalDate endDateObj = LocalDate.parse(endDate);
+        LocalDateTime endDateTime = endDateObj.atStartOfDay();
 
         // 투표 생성 및 저장
-        voteService.createVote(topic, startDateTime, endDateTime);
+        voteService.createVote(topic, startDateTime, endDateTime, options);
         return "redirect:/notice/vote";
     }
 }
