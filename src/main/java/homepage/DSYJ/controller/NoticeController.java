@@ -45,6 +45,9 @@ public class NoticeController {
 
     @GetMapping("/vote")
     public String vote(Model model) {
+        // Option 엔티티에서 topic 정보를 가져와서 전달
+        List<String> topics = voteService.findDistinctTopics();
+        model.addAttribute("topics", topics);
         return "vote";
     }
 
