@@ -4,6 +4,7 @@ import homepage.DSYJ.domain.Option;
 import homepage.DSYJ.domain.Vote;
 import homepage.DSYJ.repository.SpringDataJpaOptionRepository;
 import homepage.DSYJ.repository.SpringDataJpaVoteRepository;
+import jakarta.transaction.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,6 +19,7 @@ public class VoteService {
         this.optionRepository = optionRepository;
     }
 
+    @Transactional
     public void createVote(String topic, LocalDateTime startDate,
                            LocalDateTime endDate, List<String> options) {
         // Vote 엔티티 생성 및 저장
@@ -36,7 +38,8 @@ public class VoteService {
         }
     }
 
-    public Vote getVoteById(Long id) {
-        return voteRepository.findById(id).orElse(null);
+    @Transactional
+    public List<String> findDistinctTopics() {
+        return voteRepository.findDistinctTopics();
     }
 }

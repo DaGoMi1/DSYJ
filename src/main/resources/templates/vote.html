@@ -19,8 +19,8 @@
             <span class="topic">투표 주제</span>
             <div class="content">
                 <ul>
-                    <li>내용1</li>
-                    <li>내용2</li>
+                    <!-- 서버에서 해당 topic에 해당하는 Option 데이터를 가져와서 표시 -->
+                    <li th:each="option : ${optionRepository.findByTopic(topic)}" th:text="${option.option}"></li>
                 </ul>
             </div>
             <div>
