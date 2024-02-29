@@ -29,9 +29,8 @@ public class SecurityConfig {
                         .loginProcessingUrl("/loginProc")
                         .failureUrl("/login-error")
                         .defaultSuccessUrl("/")
-                        .successHandler((request, response, authentication) -> {
-                            response.sendRedirect("/");
-                        })
+                        .successHandler((request, response, authentication) ->
+                                response.sendRedirect("/"))
                         .permitAll()
                 );
 

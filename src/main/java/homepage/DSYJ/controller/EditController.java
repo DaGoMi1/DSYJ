@@ -27,7 +27,6 @@ public class EditController {
 
         Member loggedInMember = userDetails.getMember();
         // 여기서 name을 기반으로 Member 정보를 데이터베이스에서 가져와서 model에 추가하는 작업을 수행하면 됩니다.
-        // ...
 
         model.addAttribute("name", loggedInMember.getName());
         model.addAttribute("email", loggedInMember.getEmail());
