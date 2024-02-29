@@ -44,7 +44,7 @@ public class NoticeController {
     }
 
     @GetMapping("/vote")
-    public String vote(Model model) {
+    public String vote() {
         return "vote";
     }
 
@@ -166,8 +166,6 @@ public class NoticeController {
         LocalDate endDateObj = LocalDate.parse(endDate);
         LocalDateTime endDateTime = endDateObj.atStartOfDay();
 
-        // 투표 생성 및 저장
-        voteService.createVote(topic, startDateTime, endDateTime, options);
         return "redirect:/notice/vote";
     }
 }
