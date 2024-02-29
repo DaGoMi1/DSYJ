@@ -8,6 +8,4 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface SpringDataJpaVoteRepository extends JpaRepository<Vote, Long> {
-    @Query("SELECT DISTINCT v.topic FROM Vote v")
-    List<String> findDistinctTopics();
 }
