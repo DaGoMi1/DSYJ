@@ -20,6 +20,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/notice")
@@ -44,7 +45,20 @@ public class NoticeController {
     }
 
     @GetMapping("/vote")
-    public String vote() {
+    public String vote(Model model) {
+        List<Vote> activeVotes = voteService.findVotes();
+
+        if (!activeVotes.isEmpty()) {
+            // 진행 중인 투표가 있을 때
+            List<String> activeVoteTopics = activeVotes.stream()
+                    .map(Vote::getTopic)
+                    .collect(Collectors.toList());
+
+            model.addAttribute("activeVoteTopics", activeVoteTopics);
+        } else {
+            // 진행 중인 투표가 없을 때
+            model.addAttribute("noActiveVotesMessage", "현재 진행 중인 투표가 존재하지 않습니다.");
+        }
         return "vote";
     }
 
@@ -151,21 +165,21 @@ public class NoticeController {
     }
 
     @GetMapping("/setting")
-    public String voteSetting(){
+    public String voteSetting() {
         return "voteSetting";
     }
 
     @PostMapping("/voteStart")
     public String voteStart(@RequestParam String topic,
                             @RequestParam String startDate,
-                            @RequestParam String endDate,
-                            @RequestParam List<String> options){
+                            @RequestParam String endDate) {
         LocalDate startDateObj = LocalDate.parse(startDate);
         LocalDateTime startDateTime = startDateObj.atStartOfDay();
 
         LocalDate endDateObj = LocalDate.parse(endDate);
         LocalDateTime endDateTime = endDateObj.atStartOfDay();
 
+        voteService.saveVote(topic, startDateTime, endDateTime);
         return "redirect:/notice/vote";
     }
 }
