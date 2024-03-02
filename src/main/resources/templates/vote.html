@@ -13,13 +13,19 @@
 
 <main class="main">
     <div class="wrap">
-        <br />
+        <br>
         <h1 style="text-align: center; font-size: 40px">투표</h1>
         <div class="frame">
             <span class="topic">투표 주제</span>
-            <div class="content">
-
-
+            <div class="content" th:if="${activeVoteTopics != null}">
+                <ul>
+                    <li th:each="topic : ${activeVoteTopics}">
+                        <span th:text="${topic}"></span>
+                    </li>
+                </ul>
+            </div>
+            <div th:if="${noActiveVotesMessage != null}">
+                <span th:text="${noActiveVotesMessage}"></span>
             </div>
             <div>
                 <button class="button">찬성</button>
