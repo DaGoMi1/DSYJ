@@ -2,7 +2,6 @@ package homepage.DSYJ.service;
 
 import homepage.DSYJ.domain.Vote;
 import homepage.DSYJ.repository.SpringDataJpaVoteRepository;
-import org.springframework.cglib.core.Local;
 
 import java.time.LocalDateTime;
 import java.util.List;
