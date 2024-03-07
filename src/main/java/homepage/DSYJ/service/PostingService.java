@@ -5,7 +5,6 @@ import homepage.DSYJ.repository.SpringDataJpaPostingRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
@@ -50,10 +49,6 @@ public class PostingService {
 
     public Optional<Posting> findById(Long id) {
         return postingRepository.findById(id);
-    }
-
-    public List<Posting> findAll() {
-        return postingRepository.findAll();
     }
 
     public List<Posting> findByBoardType(String boardType) {
